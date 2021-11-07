@@ -51,10 +51,10 @@ def maxCaloriiPerAn(lista):
         an = getAn(prajitura)
         calorii = getCalorii(prajitura)
         if an in rezultat:
-            if calorii > rezultat[an]:
-                rezultat[an] = calorii
+            if calorii > getCalorii(rezultat[an]):
+                rezultat[an] = prajitura
         else:
-            rezultat[an]=calorii
+            rezultat[an] = prajitura
     return rezultat
 
 def raportPretCalorii(prajitura):

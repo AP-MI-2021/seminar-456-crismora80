@@ -39,8 +39,10 @@ def testMaxCaloriiPerAn():
     rezultat = maxCaloriiPerAn(lista)
 
     assert len(rezultat) == 2
-    assert rezultat[1995] == 200
-    assert rezultat[2000] == 300
+    assert getId(rezultat[1995]) == "3"
+    assert getCalorii(rezultat[1995]) == 200
+    assert getId(rezultat[2000]) == "2"
+    assert getCalorii(rezultat[2000]) == 300
 
 def testOrdonareDupaPretCalorii():
     lista = []
