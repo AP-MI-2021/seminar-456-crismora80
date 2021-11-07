@@ -25,10 +25,14 @@ def testStergePrajitura():
     assert getById("1", lista) is None
     assert getById("2", lista) is not None
 
-    lista = stergePrajitura("3", lista)
-
-    assert len(lista) == 1
-    assert getById("2", lista) is not None
+    try:
+        lista = stergePrajitura("3", lista)
+        assert False
+    except ValueError:
+        assert len(lista) == 1
+        assert getById("2", lista) is not None
+    except Exception:
+        assert False
 
 def testModificaPrajitura():
     lista = []
@@ -56,12 +60,15 @@ def testModificaPrajitura():
     lista = []
     lista = adaugaPrajitura("1", "tiramisu", "italiana", 10, 200, 1995, lista)
 
-    lista = modificaPrajitura("3", "sarailie", "dulce", 5, 500, 2010, lista)
-
-    prajituraNeupdatata = getById("1", lista)
-    assert getId(prajituraNeupdatata) == "1"
-    assert getNume(prajituraNeupdatata) == "tiramisu"
-    assert getDescriere(prajituraNeupdatata) == "italiana"
-    assert getPret(prajituraNeupdatata) == 10
-    assert getCalorii(prajituraNeupdatata) == 200
-    assert getAn(prajituraNeupdatata) == 1995
+    try:
+        lista = modificaPrajitura("3", "sarailie", "dulce", 5, 500, 2010, lista)
+    except ValueError:
+        prajituraNeupdatata = getById("1", lista)
+        assert getId(prajituraNeupdatata) == "1"
+        assert getNume(prajituraNeupdatata) == "tiramisu"
+        assert getDescriere(prajituraNeupdatata) == "italiana"
+        assert getPret(prajituraNeupdatata) == 10
+        assert getCalorii(prajituraNeupdatata) == 200
+        assert getAn(prajituraNeupdatata) == 1995
+    except Exception:
+        assert False

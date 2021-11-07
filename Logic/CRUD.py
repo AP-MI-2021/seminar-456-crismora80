@@ -13,6 +13,8 @@ def adaugaPrajitura(id, nume, descriere, pret, calorii, an, lista):
     :param lista: lista de prajituri
     :return: o lista continand atat elementele vechi, cat si noua prajitura
     '''
+    if getById(id, lista) is not None:
+        raise ValueError("Id-ul exista deja!")
     prajitura = creeazaPrajitura(id, nume, descriere, pret, calorii, an)
     return lista + [prajitura]
 
@@ -35,6 +37,8 @@ def stergePrajitura(id, lista):
     :param lista: lista de prajituri
     :return: o lista de prajituri fara elementul cu id-ul dat
     """
+    if getById(id, lista) is None:
+        raise ValueError("Nu exista o prajitura cu id-ul dat!")
     return [prajitura for prajitura in lista if getId(prajitura) != id]
 
 def modificaPrajitura(id, nume, descriere, pret, calorii, an, lista):
@@ -49,6 +53,8 @@ def modificaPrajitura(id, nume, descriere, pret, calorii, an, lista):
     :param lista: O lista de prajituri.
     :return: lista modificata.
     """
+    if getById(id, lista) is None:
+        raise ValueError("Nu exista o prajitura cu id-ul dat!")
     listaNoua = []
     for prajitura in lista:
         if getId(prajitura) == id:
